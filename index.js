@@ -1,33 +1,50 @@
 console.log("welcome to team profile generator....");
 
-const inquirer = require('inquirer');
+// creating page
+const templateHTML = require('./src/template.HTML')
+
+// team profiles
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+
+// employee array
+const employees = [];
+
+// node modules
 const fs = require('fs')
+const inquirer = require('inquirer');
 
-
+// I am prompted to enter the team manager’s name, employee ID, email address, and office number
+// Manager question array
 const managerQuestions =[
     {
+        type:'input'
         name: 'managerName', 
         message:'Please enter manager name:', 
-        type:'input'
+        
     },
     {
+        type:'input'
         name: 'managerID', 
         message:'Please enter manager ID:', 
-        type:'input'
+        
     },
     {
+        type:'input'
         name: 'managerEmail', 
         message:'Please enter manager Email:', 
-        type:'input'
+        
     },
     {
+        type:'input'
         name: 'managerOfficeNumber', 
         message:'Please enter manager Office Number:', 
-        type:'input'
+        
     }
 ]; 
 
-// I am prompted to enter the team manager’s name, employee ID, email address, and office number
+
 inquirer.prompt(
    managerQuestions
 ).then(answer => {
@@ -63,13 +80,24 @@ function userchoice(){
         //2. Intern Questions
          } if (answer.employeeType === "Intern") {
              return internQuestions();
-         }
-    //3. Build HTML PAGE 
-    else {
-        fs.writeFile()
-    }
-    
+        //3. Build HTML PAGE 
+         }else {
+        fs.writeFile();
+    };
     //helper code and template.html 
 
      });
 }
+
+function engineerQuestions(){
+    inquirer.prompt({
+        
+    })
+};
+
+function internQuestions(){
+    inquirer.prompt({
+
+    })
+};
+
