@@ -17,32 +17,57 @@ const inquirer = require('inquirer');
 
 // I am prompted to enter the team manager’s name, employee ID, email address, and office number
 // Manager question array
-const managerQuestions =[
-    {
-        type:'input'
-        name: 'managerName', 
-        message:'Please enter manager name:', 
-        
-    },
-    {
-        type:'input'
-        name: 'managerID', 
-        message:'Please enter manager ID:', 
-        
-    },
-    {
-        type:'input'
-        name: 'managerEmail', 
-        message:'Please enter manager Email:', 
-        
-    },
-    {
-        type:'input'
-        name: 'managerOfficeNumber', 
-        message:'Please enter manager Office Number:', 
-        
-    }
-]; 
+const addManager = () => {
+    return inquirer.prompt([
+        {
+            type:'input'
+            name: 'managerName', 
+            message:'Please enter manager name:',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid name!');
+                    return false;
+                }
+            } 
+            
+        },
+        {
+            type:'input'
+            name: 'managerID', 
+            message:'Please enter manager ID:', 
+            validate: idInput => {
+                if (isNaN(nameInput)) {
+                    console.log('Please enter a valid manager ID')
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            
+        },
+        {
+            type:'input'
+            name: 'managerEmail', 
+            message:'Please enter manager Email:', 
+            
+        },
+        {
+            type:'input'
+            name: 'managerOfficeNumber', 
+            message:'Please enter manager Office Number:',
+            validate: nameInput => {
+                if  (isNaN(nameInput)) {
+                    console.log ('Please enter an office number!')
+                    return false; 
+                } else {
+                    return true;
+                }
+            }
+        }
+    ]);
+
 
 
 inquirer.prompt(
