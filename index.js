@@ -35,15 +35,7 @@ const addManager = () => {
             {
                 type: 'input',
                 name: 'managerID',
-                message: 'Please enter manager ID:',
-                validate: idInput => {
-                    if (isNaN(nameInput)) {
-                        console.log('Please enter a valid manager ID')
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
+                message: 'Please enter manager ID:'
 
             },
             {
@@ -55,15 +47,7 @@ const addManager = () => {
             {
                 type: 'input',
                 name: 'managerOfficeNumber',
-                message: 'Please enter manager Office Number:',
-                validate: nameInput => {
-                    if (isNaN(nameInput)) {
-                        console.log('Please enter an office number!')
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
+                message: 'Please enter manager Office Number:'
             }
         ])
         .then(managerInput => {
@@ -190,7 +174,7 @@ const addEmployee = () => {
 
 // function to generate HTML
 const writeFile = data => {
-    fs.writeFile('./dist/index.html', data, err => {
+    fs.writeFile('./dist/template.html', data, err => {
         // general error
         if (err) {
             console.log(err);
