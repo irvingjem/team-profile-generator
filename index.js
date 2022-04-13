@@ -188,7 +188,7 @@ const addEmployee = () => {
 // }
 
 
-// function to generate HTML page file using file system 
+// function to generate HTML
 const writeFile = data => {
     fs.writeFile('./dist/index.html', data, err => {
         // general error
@@ -204,6 +204,12 @@ const writeFile = data => {
 
 addManager()
     .then(addEmployee)
-    .then(employees => {
-        return (employees);
+    .then(teamArray => {
+        return generateHTML(teamArray);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
+    .catch(err => {
+        console.log(err);
     });
