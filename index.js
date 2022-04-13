@@ -12,17 +12,17 @@ const managerQuestions =[
     },
     {
         name: 'managerID', 
-        message:'Please enter manager name:', 
+        message:'Please enter manager ID:', 
         type:'input'
     },
     {
-        name: 'managerName', 
-        message:'Please enter manager name:', 
+        name: 'managerEmail', 
+        message:'Please enter manager Email:', 
         type:'input'
     },
     {
-        name: 'managerName', 
-        message:'Please enter manager name:', 
+        name: 'managerOfficeNumber', 
+        message:'Please enter manager Office Number:', 
         type:'input'
     }
 ]; 
@@ -34,7 +34,7 @@ inquirer.prompt(
     console.log(answer);
     //Ask for team members 
     //convert the answers int oCLass manager object
-    const employeeOne = new Manager(answer.managerName, and);
+    const employeeOne = new Manager(answer.managerName, answer.managerID, answer.managerEmail, answer.managerOfficeNumber);
 
     // console.log(employeeOne.id);
     // console.log(employeeOne.getRole())
@@ -57,17 +57,16 @@ function userchoice(){
      
          console.log(answer);
 
-
+        //1. Engineer Questions 
          if(answer.employeeType === "Engineer"){
-
+            return engineerQuestions();
+        //2. Intern Questions
+         } if (answer.employeeType === "Intern") {
+             return internQuestions();
          }
-             //1. Engineer Questions 
-
-    //2. Intern Questions 
-
     //3. Build HTML PAGE 
     else {
-        //fs.writeFile()
+        fs.writeFile()
     }
     
     //helper code and template.html 
