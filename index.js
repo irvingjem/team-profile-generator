@@ -66,7 +66,13 @@ const addManager = () => {
                 }
             }
         }
-    ]);
+    ])
+    .then(managerInput => {
+        const {managerName, managerID, managerEmail, managerOfficeNumber} = managerInput;
+        const manager = new Manager (managerName, managerID, managerEmail, managerOfficeNumber);
+
+        console.log(manager);
+    })
 
 
 
