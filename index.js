@@ -71,6 +71,7 @@ const addManager = () => {
         const {managerName, managerID, managerEmail, managerOfficeNumber} = managerInput;
         const manager = new Manager (managerName, managerID, managerEmail, managerOfficeNumber);
 
+        employees.push(manager);
         console.log(manager);
     })
 
