@@ -93,40 +93,49 @@ const addManager = () => {
 
         })
 
-        function userchoice() {
-            inquirer.prompt({
-                name: 'employeeType',
-                message: 'Please choose employee type',
-                type: 'list',
-                choices: ['Engineer', 'Intern', 'None']
-            }).then(answer => {
+        // function userchoice() {
+        //     inquirer.prompt({
+        //         name: 'employeeType',
+        //         message: 'Please choose employee type',
+        //         type: 'list',
+        //         choices: ['Engineer', 'Intern', 'None']
+        //     }).then(answer => {
 
-                console.log(answer);
+        //         console.log(answer);
 
-                //1. Engineer Questions 
-                if (answer.employeeType === "Engineer") {
-                    return engineerQuestions();
-                    //2. Intern Questions
-                }
-                if (answer.employeeType === "Intern") {
-                    return internQuestions();
-                    //3. Build HTML PAGE 
+        //         //1. Engineer Questions 
+        //         if (answer.employeeType === "Engineer") {
+        //             return engineerQuestions();
+        //             //2. Intern Questions
+        //         }
+        //         if (answer.employeeType === "Intern") {
+        //             return internQuestions();
+        //             //3. Build HTML PAGE 
+        //         } else {
+        //             fs.writeFile();
+        //         };
+        //         //helper code and template.html 
+
+        //     });
+        // }
+
+
+        // function to generate HTML page file using file system 
+        const writeFile = data => {
+            fs.writeFile('./dist/index.html', data, err => {
+                // general error
+                if (err) {
+                    console.log(err);
+                    return;
+                    // when successful 
                 } else {
-                    fs.writeFile();
-                };
-                //helper code and template.html 
+                    console.log("Your team profile has been successfully created!")
+                }
+            })
+        };
 
+        addManager()
+            .then(addEmployee)
+            .then(employees => {
+                return (employees);
             });
-        }
-
-        function engineerQuestions() {
-            inquirer.prompt({
-
-            })
-        };
-
-        function internQuestions() {
-            inquirer.prompt({
-
-            })
-        };
