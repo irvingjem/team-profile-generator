@@ -11,7 +11,7 @@
 * [Questions](#questions)
 
 ## Installation 
-
+The user should type npm install
 ## Usage 
 
 ## License 
