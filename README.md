@@ -11,9 +11,13 @@ __ Node modules <br>
 * CSS
 * JavaScript
 
-Video Demonstration
+## Videos
+Video Walk-Through Link [Team Profile Generator](https://.com)<br>
+![Team Profile Generator gif](/img/teamprofile.gif)<br>
 
-!
+## Images
+
+![Team Profile Generator image](./img/Generated%20Team.jpg)
 
 ## Table of Contents
 * [Installation](#installation)
