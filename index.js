@@ -128,6 +128,39 @@ const addEmployee = () => {
         })
 };
 
+
+
+// function to generate HTML
+const writeFile = data => {
+    fs.writeFile('./dist/template.html', data, err => {
+        // general error
+        if (err) {
+            console.log(err);
+            return;
+            // when successful 
+        } else {
+            console.log("Your team profile has been successfully created!")
+        }
+    })
+};
+
+addManager()
+    .then(addEmployee)
+    .then(teamArray => {
+        return generateHTML(teamArray);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
+    .catch(err => {
+        console.log(err);
+    });
+
+
+
+
+
+
 // inquirer.prompt(
 //     managerQuestions
 // ).then(answer => {
@@ -170,30 +203,3 @@ const addEmployee = () => {
 
 //     });
 // }
-
-
-// function to generate HTML
-const writeFile = data => {
-    fs.writeFile('./dist/template.html', data, err => {
-        // general error
-        if (err) {
-            console.log(err);
-            return;
-            // when successful 
-        } else {
-            console.log("Your team profile has been successfully created!")
-        }
-    })
-};
-
-addManager()
-    .then(addEmployee)
-    .then(teamArray => {
-        return generateHTML(teamArray);
-    })
-    .then(pageHTML => {
-        return writeFile(pageHTML);
-    })
-    .catch(err => {
-        console.log(err);
-    });
