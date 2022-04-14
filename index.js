@@ -101,13 +101,13 @@ const addEmployee = () => {
                     addIntern();
                     break;
                 case 'None':
-                    buildTeam();
+                    writeFile();
                     break;
             }
         });
 };
 
-// prompts for adding an engineer 
+// adding engineer 
 const addEngineer = () => {
     return inquirer
         .prompt([{
@@ -160,11 +160,73 @@ const addEngineer = () => {
             }
         ])
         .then((answers) => {
-            // create new engineer based off user's answers
+            // create new engineer based off  answers
             const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-            // push new engineer to teamArr
+            // push new engineer to employeeArray
             employeesArray.push(engineer);
-            // call addTeamMember() function
+            // call addEmployee function
+            addEmployee();
+        });
+};
+
+// adding intern
+const addIntern = () => {
+    return inquirer
+        .prompt([{
+                type: 'input',
+                name: 'internName',
+                message: "What is the intern's name?",
+                validate: nameInput => {
+                    if (nameInput === '') {
+                        console.log("Please enter the intern's name!");
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'internId',
+                message: "What is the intern's ID number?",
+                validate: idInput => {
+                    if (idInput === '') {
+                        console.log("Please enter the intern's ID number!");
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'internEmail',
+                message: "What is the intern's email address?",
+                validate: emailInput => {
+                    if (emailInput === '') {
+                        console.log("Please enter the intern's email address!");
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'internSchool',
+                message: "What is the intern's school name?",
+                validate: schoolInput => {
+                    if (schoolInput === '') {
+                        console.log("Please enter the intern's school name!");
+                        return false;
+                    }
+                    return true;
+                }
+            }
+        ])
+        .then((answers) => {
+            // create new intern based off user's answers
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+            // push new intern to EmployeeArray
+            employeesArray.push(intern);
+            // call addEmployee function
             addEmployee();
         });
 };
@@ -184,17 +246,7 @@ const writeFile = data => {
     })
 };
 
-addManager()
-    .then(addEmployee)
-    .then(employeesArray => {
-        return generateHTML(employeesArray);
-    })
-    .then(pageHTML => {
-        return writeFile(pageHTML);
-    })
-    .catch(err => {
-        console.log(err);
-    });
+addManager();
 
 
 
