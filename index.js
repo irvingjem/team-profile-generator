@@ -82,80 +82,92 @@ const addManager = () => {
             addEmployee();
         })
 };
+
 // adding employee
 const addEmployee = () => {
-
-return inquirer
-    .prompt([{
-        type: 'list',
-        name: 'role',
-        message: "Please choose your employee role",
-        choices: ['Engineer', 'Intern', 'None']
-    }])
-    .then((choice.userChoice) {
-        const expr = 'Papayas';
-        switch (expr) {
-            case 'Oranges':
-                console.log('Oranges are $0.59 a pound.');
-                break;
-            case 'Mangoes':
-            case 'Papayas':
-                console.log('Mangoes and papayas are $2.79 a pound.');
-                // expected output: "Mangoes and papayas are $2.79 a pound."
-                break;
-            default:
-        }
-    }); {
-    type: 'input',
-    name: 'name',
-    message: "Name of the Employee?",
-}, {
-    type: 'input',
-    name: 'id',
-    message: 'Please enter a valid employee ID'
-}, {
-    type: 'input',
-    name: 'email',
-    message: "Please enter employee email"
-}, {
-    type: 'input',
-    name: 'github',
-    message: "Please enter the employee's github username."
-}, {
-    type: 'input',
-    name: 'school',
-    message: "Please enter the intern's school"
-}, {
-    type: 'confirm',
-    name: 'confirmAddEmployee',
-    message: "Would you like to add another team member?",
-    default: false
-}
-])
-.then(employeeData => {
-    let { name, id, email, role, school, confirmAddEmployee } = employeeData
-    let employee;
-
-    if (role === "Engineer") {
-        employee = new Engineer(name, id, email, github)
-
-        console.log(employee)
-    } else if (role === "intern") {
-        employee = new Intern(name, id, email, school);
-
-        console.log(employee)
-    }
-
-    employees.push(employees)
-
-    if (confirmAddEmployee) {
-        return addEmployee(employees);
-    } else {
-        return employees;
-    }
-})
+    return inquirer
+        .prompt([{
+            type: 'list',
+            name: 'userChoice',
+            message: 'Which type of team member would you like to add?',
+            choices: ['Engineer', 'Intern', "None"]
+        }])
+        .then((choice) => {
+            switch (choice.userChoice) {
+                case 'Engineer':
+                    addEngineer();
+                    break;
+                case 'Intern':
+                    addIntern();
+                    break;
+                case 'None':
+                    buildTeam();
+                    break;
+            }
+        });
 };
 
+// prompts for adding an engineer 
+const addEngineer = () => {
+    return inquirer
+        .prompt([{
+                type: 'input',
+                name: 'engineerName',
+                message: "What is the engineer's name?",
+                validate: nameInput => {
+                    if (nameInput === '') {
+                        console.log("Please enter the engineer's name!");
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'engineerId',
+                message: "What is the engineer's ID number?",
+                validate: idInput => {
+                    if (idInput === '') {
+                        console.log("Please enter the engineer's ID number!");
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'engineerEmail',
+                message: "What is the engineer's email address?",
+                validate: emailInput => {
+                    if (emailInput === '') {
+                        console.log("Please enter the engineer's email address!");
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'engineerGithub',
+                message: "What is the engineer's Github username?",
+                validate: githubInput => {
+                    if (githubInput === '') {
+                        console.log("Please enter the engineer's Github username!");
+                        return false;
+                    }
+                    return true;
+                }
+            }
+        ])
+        .then((answers) => {
+            // create new engineer based off user's answers
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+            // push new engineer to teamArr
+            employeeArr.push(engineer);
+            // call addTeamMember() function
+            addEmployee();
+        });
+};
 
 
 // function to generate HTML
@@ -188,7 +200,7 @@ addManager()
 
 
 
-
+//refrence code 
 // inquirer.prompt(
 //     managerQuestions
 // ).then(answer => {
