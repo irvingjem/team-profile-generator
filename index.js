@@ -1,5 +1,5 @@
 // creating page
-const templateHTML = require('./src/template.js')
+const generateHTML = require('./src/template.js')
 
 // team profiles
 const Manager = require('./lib/Manager');
@@ -233,8 +233,8 @@ const addIntern = () => {
 
 
 // function to generate HTML
-const writeFile = data => {
-    fs.writeFile('./dist/template.html', data, err => {
+const writeFile = () => {
+    fs.writeFile('./dist/template.html', generateHTML(employeesArray), err => {
         // general error
         if (err) {
             console.log(err);
@@ -246,6 +246,7 @@ const writeFile = data => {
     })
 };
 
+// function to start over
 addManager();
 
 
