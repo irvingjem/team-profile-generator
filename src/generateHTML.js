@@ -1,4 +1,11 @@
 // Create Manager Card
+const generateManager = function(manager) {
+    return `
+    <div class=>
+        <div></div>
+        </div> `
+
+}
 
 // Create Engineer Card
 
