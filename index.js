@@ -163,7 +163,7 @@ const addEngineer = () => {
             // create new engineer based off user's answers
             const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
             // push new engineer to teamArr
-            employeeArr.push(engineer);
+            employeesArray.push(engineer);
             // call addTeamMember() function
             addEmployee();
         });
@@ -186,8 +186,8 @@ const writeFile = data => {
 
 addManager()
     .then(addEmployee)
-    .then(teamArray => {
-        return generateHTML(teamArray);
+    .then(employeesArray => {
+        return generateHTML(employeesArray);
     })
     .then(pageHTML => {
         return writeFile(pageHTML);
